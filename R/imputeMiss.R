@@ -1,5 +1,22 @@
-
-
+#' Impute Missing Data in  a Dataset
+#'
+#' Impute a dataframe, with different values depending on proportion and class of observations missing.
+#' If a categorical variable is not a factor, character, or logical observation, the function
+#' will not impute.
+#'
+#' @param df A dataframe
+#' @param method Method to replace missing data in numerical observations, default is mean, but also can choose "median"
+#' @param method_cat Method to replace missing data in categorical observations, default is most frequent, can also select "sample" for random sample.
+#'
+#' @return A datafame with no missing values in any observation
+#' @export
+#' @examples
+#' \dontrun{
+#' ## from 'qacbase' package
+#' # library(qacBase)
+#' # data(tv)
+#' # imputeMiss(tv)
+#' # imputeMiss(tv, method = "median", method_cat = "sample")}
 imputeMiss <- function(df, method = "mean", method_cat = "frequent"){
   for (col in colnames(df)){
     missing_percentage <- sum(is.na(df[[col]])) / nrow(df)

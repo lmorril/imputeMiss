@@ -1,12 +1,14 @@
 Package: imputeMiss
-Title: What the Package Does (One Line, Title Case)
+Title: Impute Missing Data
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    c(person(given = "Morrill", 
+            family= "Luke",  role = c("aut", "cre"), 
+            email = "lmorrill@wesleyan.edu"),
+    person("Dutra", "Pedro",  role = "ctb"),
+    person("Duong", "Rome",  role = "ctb"))
+Description: The imputeMiss function aims to make imputing missing data easier in all datasets. Dealing with missing data is a long, and often overwhelming process. This function offers flexibility for the user to quickly impute missing values in their datasets. If missing values are present in less than 5% of the numeric observations in the dataset, imputeMiss will replace the missing data with the mean, median, or a random sample from the data. If missing values are present in less than 5% of the categorical observations in the dataset, imputeMiss will replace the missing data with most frequent value or a random sample from the data for categorical values. The default for numeric values is mean and the default for categorical values is most frequent. If missing values are present in more than 5% of the numeric observations in the dataset, imputeMiss will replace the missing data with the mean or median value and add a binary variable to capture NA for numerical values. If missing values are present in less than 5% of the categorical observations in the dataset, imputeMiss will replace the missing data with a “Missing” label for categorical values. The default method for numeric observations is mean. data is a long, and often overwhelming process. This function offers flexibility for the user to quickly impute missing values in their datasets. If missing values are present in less than 5% of the numeric observations in the dataset, imputeMiss will replace the missing data with the mean, median, or a random sample from the data. If missing values are present in less than 5% of the categorical observations in the dataset, imputeMiss will replace the missing data with most frequent value or a random sample from the data for categorical values. The default for numeric values is mean and the default for categorical values is sampling. If missing values are present in more than 5% of the numeric observations in the dataset, imputeMiss will replace the missing data with the mean or median value and add a binary variable to capture NA for numerical values. If missing values are present in less than 5% of the categorical observations in the dataset, imputeMiss will replace the missing data with a “Missing” label for categorical values. The default method for numeric observations is mean. 
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
