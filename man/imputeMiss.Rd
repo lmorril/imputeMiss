@@ -9,7 +9,7 @@ imputeMiss(df, method = "mean", method_cat = "frequent")
 \arguments{
 \item{df}{A dataframe}
 
-\item{method}{Method to replace missing data in numerical observations, default is mean, but also can choose "median"}
+\item{method}{Method to replace missing data in numerical observations, default is mean.}
 
 \item{method_cat}{Method to replace missing data in categorical observations, default is most frequent, can also select "sample" for random sample.}
 }
@@ -23,9 +23,7 @@ will not impute.
 }
 \examples{
 \dontrun{
-## from 'qacbase' package
-# library(qacBase)
-# data(tv)
-# imputeMiss(tv)
-# imputeMiss(tv, method = "median", method_cat = "sample")}
+# imputeMiss(df = mydata)
+# imputeMiss(df = mydata, method = "median", method_cat = "sample")
+}
 }

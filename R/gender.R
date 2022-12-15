@@ -1,0 +1,15 @@
+#' @title Gender Classification Dataset
+#' @description This dataset specifies different facial feautures to predict whether a person is a man or a woman.
+#' @format A data frame with 5001 rows and 8 variables:
+#' \describe{
+#'   \item{\code{long_hair}}{ This column contains 0's and 1's where 1 is "long hair" and 0 is "not long hair".}
+#'   \item{\code{forehead_width_cm}}{This column is in CM's. This is the width of the forehead.}
+#'   \item{\code{forehead_height_cm}}{This is the height of the forehead and it's in Cm's.}
+#'   \item{\code{nose_wide}}{This column contains 0's and 1's where 1 is "wide nose" and 0 is "not wide nose".}
+#'   \item{\code{nose_long}}{This column contains 0's and 1's where 1 is "Long nose" and 0 is "not long nose".}
+#'   \item{\code{lips_thin}}{This column contains 0's and 1's where 1 represents the "thin lips" while 0 is "Not thin lips".}
+#'   \item{\code{distance_nose_to_lip_long}}{This column contains 0's and 1's where 1 represents the "long distance between nose and lips" while 0 is "short distance between nose and lips".}
+#'   \item{\code{gender}}{This is either "Male" or "Female".}
+#'}
+#' @source \url{https://www.kaggle.com/datasets/elakiricoder/gender-classification-dataset}
+"gender"

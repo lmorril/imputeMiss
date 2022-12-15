@@ -1,0 +1,31 @@
+title: imputeMiss
+url: http://lmorril.github.io/imputeMiss
+template:
+  params:
+    bootswatch: cerulean
+reference:
+  - title: Main Function
+    desc: ~
+    contents:
+      - '`imputeMiss`'
+  - title: Datasets
+    desc: ~
+    contents:
+      - '`admissions`'
+      - '`gender`'
+      - '`hotel_reviews`'
+navbar:
+  type: inverse
+  left:
+    - icon: fa-home
+      href: index.html
+  right:
+    - text: Getting Started
+      icon: fas fa-chalkboard-teacher
+      href: articles/imputeMiss.html
+    - icon: fa-file-code-o
+      text: "Documentation"
+      href: reference/index.html
+    - icon: fa-github fa-lg
+      text: "GitHub"
+      href: https://github.com/lmorril/imputeMiss/

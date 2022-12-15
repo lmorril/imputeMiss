@@ -5,18 +5,16 @@
 #' will not impute.
 #'
 #' @param df A dataframe
-#' @param method Method to replace missing data in numerical observations, default is mean, but also can choose "median"
+#' @param method Method to replace missing data in numerical observations, default is mean.
 #' @param method_cat Method to replace missing data in categorical observations, default is most frequent, can also select "sample" for random sample.
 #'
 #' @return A datafame with no missing values in any observation
 #' @export
 #' @examples
 #' \dontrun{
-#' ## from 'qacbase' package
-#' # library(qacBase)
-#' # data(tv)
-#' # imputeMiss(tv)
-#' # imputeMiss(tv, method = "median", method_cat = "sample")}
+#' # imputeMiss(df = mydata)
+#' # imputeMiss(df = mydata, method = "median", method_cat = "sample")
+#' }
 imputeMiss <- function(df, method = "mean", method_cat = "frequent"){
   for (col in colnames(df)){
     missing_percentage <- sum(is.na(df[[col]])) / nrow(df)
@@ -44,20 +42,18 @@ imputeMiss <- function(df, method = "mean", method_cat = "frequent"){
 
       #if factor/categorical, replace missing with "Missing" label
       } else if (is.factor(df[[col]]) || is.logical(df[[col]]) || is.character(df[[col]])){
-        col_imputed <- ifelse(is.na(df[[col]]), "Missing", df[[col]])
+        col_imputed <- ifelse(is.na(df[[col]]), "Missing", as.character(df[[col]]))
         df[[col]] <- col_imputed
       }
     }else{
       #if numeric, impute based on method
       if (is.numeric(df[[col]])){
-
         median_col <- median(df[[col]], na.rm = TRUE)
         mean_col <- mean(df[[col]], na.rm=TRUE)
         actual_method = ""
         if (method == "median"){
-
           actual_method = median_col
-        } else {
+        }else {
           actual_method = mean_col
         }
 
@@ -78,7 +74,7 @@ imputeMiss <- function(df, method = "mean", method_cat = "frequent"){
         } else {
           actual_method_cat = most_freq_x
         }
-        col_imputed <- ifelse(is.na(df[[col]]), actual_method_cat, df[[col]])
+        col_imputed <- ifelse(is.na(df[[col]]), actual_method_cat, as.character(df[[col]]))
         df[[col]] <- col_imputed
       }
     }

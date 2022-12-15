@@ -1,0 +1,105 @@
+---
+title: "imputeMiss"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{imputeMiss}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(imputeMiss)
+```
+
+# Introduction
+
+## Imputing Missing Values in Numerical Observations
+
+### Larger Amounts of Missing Data
+
+When an observation contains >5% missing data, the mean/median replaces 
+the missing values and a new binary column is created to track which 
+rows were missing. In this example, the youngest_child columns is 
+missing > 5% of observations in the tv dataset from qacbase.
+
+In order to conserve space, only the first 10 rows are displayed:
+```{r}
+library(qacBase)
+ages <- tv$youngest_child
+data.frame(youngest_child = head(ages, 10))
+data.frame(
+  youngest_child = head(imputeMiss(tv, method = "mean")[c("youngest_child",
+                                                          "youngest_child_na")],
+                        10))
+```
+
+The mean of this column is 7.497312
+
+### Missing Low Amounts of Data
+If a numerical observation is missing a lower amount of data (< 5%)
+then we do a mean/median imputation on the missing data, the difference
+being there is no new column added, for this example, we demonstrate the
+mean option for the method parameter:
+
+```{r}
+library(qacBase)
+ages <- tv$youngest_child
+data.frame(youngest_child = head(ages, 10))
+data.frame(
+  youngest_child = head(imputeMiss(tv, method = "median")[c("youngest_child",
+                                                          "youngest_child_na")],
+                        10))
+
+```
+
+The median is 7.0
+
+## Imputing Data in Categorical Data
+One important thing to note is the imputeMiss function only imputes
+categorical data that is of the class factor, logical or character, so if
+you have a categorical variable that you wish to be imputed, it must be 
+transformed into that type.
+
+### Missing Larger Amounts of Categorical Data
+
+If a categorical variable has greater than 5% of its data missing,
+the string "Missing" is inserted everywhere there is missing data.
+
+In the 'tv' dataset, the educ column is missing greater than 5%
+of its data and is a factor:
+
+```{r}
+library(qacBase)
+educ <- tv$educ
+data.frame(educ = head(educ, 10))
+data.frame(
+  educ = head(imputeMiss(tv)[c("educ")],
+                        10))
+
+```
+
+### Missing Smaller Amounts of Categorical Data
+ 
+ If a categorical variable is missing less than 5% of its data,
+ than the missing values are replaced with either the most frequent
+ category or with a random sample
+ 
+For this example we create a vector of size 100 of random sampled nums
+```{r}
+column <- (sample(x = c(1, 3, 5, 7), size = 100, replace = TRUE))
+column[1] <- NA
+example_df <- data.frame(factor(column))
+head(example_df, 10)
+head(imputeMiss(example_df, method_cat = "frequent"), 10)
+head(imputeMiss(example_df, method_cat = "sample"), 10)
+
+
+```
+
